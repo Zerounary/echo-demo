@@ -7,16 +7,16 @@ on:
       - main
 
 jobs:
-  build-and-publish:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Build Docker Image
-        run: docker build . --tag my-image-name:$(date +%s)
-      
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@v4
-        with:
-          name: zerounary/go-github-actions
-          username: ${{secrets.DOCKER_USERNAME}}
-          password: ${{secrets.DOCKER_PASSWORD}}
+    - uses: actions/checkout@v2
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@5.2
+      with:
+        switches: -avzr --delete
+        remote_path: /home/app
+        remote_host: ${{ secrets.DEPLOY_HOST }}
+        remote_port: 22
+        remote_user: ${{ secrets.DEPLOY_USER }}
+        remote_key: ${{ secrets.DEPLOY_KEY }}
