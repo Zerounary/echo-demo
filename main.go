@@ -9,7 +9,7 @@ import (
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Echo Hello! save pid as file")
+		return c.String(http.StatusOK, "Echo Hello!")
 	})
 	e.Logger.Fatal(e.Start(":9000"))
 }
