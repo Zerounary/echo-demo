@@ -39,5 +39,5 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: 22
         script: |
-          chomd +x /home/app/deploy.sh
+          chmod +x /home/app/deploy.sh
           /home/app/./deploy.sh
