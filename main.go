@@ -79,7 +79,7 @@ func main() {
 	flag.BoolVar(&multicore, "multicore", true, "multicore")
 	flag.Parse()
 
-	hs := &httpServer{addr: fmt.Sprintf("tcp://127.0.0.1:%d", port), multicore: multicore}
+	hs := &httpServer{addr: fmt.Sprintf("tcp://:%d", port), multicore: multicore}
 
 	// Start serving!
 	log.Println("server exits:", gnet.Run(hs, hs.addr, gnet.WithMulticore(multicore)))
