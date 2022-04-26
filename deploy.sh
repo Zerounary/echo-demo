@@ -1,12 +1,14 @@
 #! /bin/bash
-
+cd /home/app
 app="echo-demo"
 # kill server pid if exists
-if test -n "$(pidof $app)"; then
-  echo "Killing server" 
-  kill -9 $(pidof $app)
+if [ -f $app.pid ]; then
+    kill -9 $(cat $app.pid)
+    rm -f $app.pid
 fi
+
 # 避免nohup命令不终止
 echo "restart server"
-nohup /home/app/./$app >/dev/null 2>&1 &
+nohup ./$app >/dev/null 2>&1 &
+echo $! > $app.pid
 echo "restart server done"
