@@ -37,7 +37,7 @@ jobs:
         host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USER }}
         key: ${{ secrets.DEPLOY_KEY }}
-        port: ${{ secrets.DEPLOY_PORT }}
+        port: 22
         script: |
           chomd +x /home/app/deploy.sh
           /home/app/./deploy.sh
