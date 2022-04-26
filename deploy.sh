@@ -1,6 +1,6 @@
 #! /bin/bash
 
-app = "echo-demo"
+app="echo-demo"
 # kill server pid if exists
 if test -n "$(pidof $app)"; then
   echo "Killing server" 
