@@ -25,7 +25,7 @@ jobs:
       uses: burnett01/rsync-deployments@5.2
       with:
         switches: -avzr --delete
-        path: echo-demo
+        path: echo-demo deploy.sh
         remote_path: /home/app
         remote_host: ${{ secrets.DEPLOY_HOST }}
         remote_port: 22
@@ -39,5 +39,5 @@ jobs:
         key: ${{ secrets.DEPLOY_KEY }}
         port: ${{ secrets.DEPLOY_PORT }}
         script: |
-          kill -9 $(lsof -t -i:9000)
-          nohup /home/app/./echo-demo &
+          chomd +x /home/app/deploy.sh
+          /home/app/./deploy.sh
